@@ -82,3 +82,9 @@
     "react/wrap-multilines": 1
   }
 }
+
+/**
+0 Off
+1 Warning
+2 Error
+*/
