@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextInput from '../../common/TextInput';
 import SelectInput from '../../common/SelectInput';
 
-const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => {
+const CourseForm = ({course, allAuthors, onSave, onChange, saving, errors}) => {
   return (
     <form>
       <h1>Manage Course</h1>
@@ -22,6 +22,30 @@ const CourseForm = ({course, allAuthors, onSave, onChange, loading, errors}) => 
         defaultOption="Select Author"
         options={allAuthors}
         onChange={onChange}/>
+
+      <TextInput
+        name="category"
+        label="Category"
+        value={course.category}
+        onChange={onChange}
+        error={errors.category}
+      />
+
+      <TextInput
+        name="length"
+        label="Length"
+        value={course.length}
+        onChange={onChange}
+        error={errors.length}
+      />
+
+      <input
+        type="submit"
+        disabled={saving}
+        value={saving ? 'Saving...' : 'Save'}
+        className="btn btn-primary"
+        onClick={onSave}
+      />
     </form>
   );
 };
@@ -31,7 +55,7 @@ CourseForm.propTypes = {
   allAuthors: PropTypes.array,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  loading: PropTypes.bool,
+  saving: PropTypes.bool,
   errors: PropTypes.object
 };
 
